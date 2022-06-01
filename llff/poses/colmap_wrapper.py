@@ -28,7 +28,7 @@ def run_colmap(basedir, match_type):
     feature_extractor_args = [
         'colmap', 'feature_extractor', 
             '--database_path', os.path.join(basedir, 'database.db'), 
-            '--image_path', os.path.join(basedir, 'images'),
+            '--image_path', os.path.join(basedir, 'rgb'),
             '--ImageReader.single_camera', '1',
             # '--SiftExtraction.use_gpu', '0',
     ]
@@ -37,7 +37,7 @@ def run_colmap(basedir, match_type):
     print('Features extracted')
 
     exhaustive_matcher_args = [
-        '/home/jasonzh2/.local/bin/colmap', match_type, 
+        'colmap', match_type, 
             '--database_path', os.path.join(basedir, 'database.db'), 
     ]
 
@@ -60,7 +60,7 @@ def run_colmap(basedir, match_type):
     mapper_args = [
         'colmap', 'mapper',
             '--database_path', os.path.join(basedir, 'database.db'),
-            '--image_path', os.path.join(basedir, 'images'),
+            '--image_path', os.path.join(basedir, 'rgb'),
             '--output_path', os.path.join(basedir, 'sparse'), # --export_path changed to --output_path in colmap 3.6
             '--Mapper.num_threads', '16',
             '--Mapper.init_min_tri_angle', '4',
